@@ -1,57 +1,36 @@
 ﻿@extends('adminlte::page')
 
-@section('title', 'Planos')
+@section('title', 'Detalhes do Plano')
 
 @section('content_header')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('admin.index')}}">DashBoard</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Planos</li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">DashBoard</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('plans.index') }}">Planos</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('plans.show', $plan->url) }}">{{ $plan->name }}</a></li>
+            <li class="breadcrumb-item active"><a href="{{ route('details.plan.index', $plan->url) }}">Detalhes</a></li>
         </ol>
-        <h1>Planos <a href="{{route('plans.create')}}" class="btn btn-outline-dark">ADD<i class="fas fa-plus-square"></i></a></h1>
+        <h1>Detalhes do Plano {{ $plan->name }}<a href="{{ route('details.plan.create', $plan->url) }}" class="btn btn-outline-dark">ADD<i class="fas fa-plus-square"></i></a></h1>
     </nav>
 @stop
 
 @section('content')
     <div class="card">
         <div class="card-header">
-            <form action="{{ route('plans.search') }}" method="post" class="form form-inline">
-                @csrf
-                @if (isset($filters))
-                    <a href="{{ route('plans.index') }}" class="btn btn-outline-primary mr-2">Limpar Filtros (x)</a>
-                    @foreach ($filters as $filter)
-                        <span class="badge badge-secondary">{!! $filter !!}</span>
-                    @endforeach
-                @else
-                    <input type="text" name="filter" class="form-control" placeholder="Pesquisar pelo nome:">
-                    <button type="submit" class="btn btn-outline-info">
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
-                            <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
-                        </svg>
-                    </button>
-                @endif
-            </form>
         </div>
         <div class="card-body">
             <table class="table table-condensed">
                 <thead>
                     <tr>
                         <th>Nome</th>
-                        <th>Preço</th>
                         <th class="text-right">Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($plans as $plan)
+                    @foreach ($details as $detail)
                         <tr>
-                            <td>{{$plan->name}}</td>
-                            <td>R$ {{ number_format($plan->price, 2, ',','.') }}</td>
+                            <td>{{$detail->name}}</td>
                             <td class="text-right">
-                                <a href="{{ route('details.plan.index', $plan->url) }}" class="btn btn-outline-dark">
-                                    <i class="fas fa-list-ol"></i>Detalhes
-                                </a>
-
                                 <a href="{{ route('plans.show', $plan->url) }}" class="btn btn-outline-info">
                                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-eye" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                         <path fill-rule="evenodd" d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.134 13.134 0 0 0 1.66 2.043C4.12 11.332 5.88 12.5 8 12.5c2.12 0 3.879-1.168 5.168-2.457A13.134 13.134 0 0 0 14.828 8a13.133 13.133 0 0 0-1.66-2.043C11.879 4.668 10.119 3.5 8 3.5c-2.12 0-3.879 1.168-5.168 2.457A13.133 13.133 0 0 0 1.172 8z"/>
@@ -71,9 +50,9 @@
         </div>
         <div class="card-foooter">
             @if (isset($filters))
-                {{ $plans->appends($filters)->links()}}
+                {{ $details->appends($filters)->links()}}
             @else
-                {{ $plans->links()}}    
+                {{ $details->links()}}    
             @endif
         </div>
     </div>

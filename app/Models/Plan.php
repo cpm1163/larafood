@@ -10,6 +10,12 @@ class Plan extends Model
     use HasFactory;
     protected $fillable = ['name', 'url', 'price', 'description'];
 
+    public function details()
+    {
+        // Relacionamento Uma para Muitos 1->N
+        return $this->hasMany(DetailPlan::class);
+    }
+
     public function search($filter = null)
     {
         //->orWhere('description', 'LIKE', "%{$filter}%")

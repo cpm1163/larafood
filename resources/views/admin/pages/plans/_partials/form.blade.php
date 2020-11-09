@@ -12,5 +12,5 @@
     <input type="text" name="description" class="form-control" value="{{ $plan->description ?? old('description') }}" placeholder="Descrição:">
 </div>
 <div class="form-group">
-    <button type="submit" class="btn btn-dark">Enviar</button>
+    <button type="submit" class="btn btn-outline-dark"><i class="fas fa-paper-plane"></i></button>
 </div>
