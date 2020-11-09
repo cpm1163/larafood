@@ -8,12 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Plan extends Model
 {
     use HasFactory;
-    /*
-        $table->string('name')->unique();
-        $table->string('url')->unique();
-        $table->double('price', 10,2);
-        $table->string('description')->nullable();
-
-    */
     protected $fillable = ['name', 'url', 'price', 'description'];
+
+    public function search($filter = null)
+    {
+        //->orWhere('description', 'LIKE', "%{$filter}%")
+        $results = $this->where('name', 'LIKE', '%'.$filter.'%')
+                        ->orWhere('description', 'LIKE', '%'.$filter.'%')
+                        ->paginate();
+        return $results;
+    }
 }
