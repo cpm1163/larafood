@@ -12,8 +12,10 @@ Route::prefix('admin')->group(function(){
     Route::get('plans/{url}/details', [DetailPlanController::class, 'index'])->name('details.plan.index');
     Route::get('plans/{url}/details/create', [DetailPlanController::class, 'create'])->name('details.plan.create');
     Route::post('plans/{url}/details', [DetailPlanController::class, 'store'])->name('details.plan.store');
-    Route::post('plans/{url}/details/show', [DetailPlanController::class, 'show'])->name('details.plan.show');
-
+    Route::get('plans/{url}/details/show', [DetailPlanController::class, 'show'])->name('details.plan.show');
+    Route::get('plans/{url}/details/{idDetail}/edit', [DetailPlanController::class, 'edit'])->name('details.plan.edit');
+    Route::put('plans/{url}/details/{idDetail}', [DetailPlanController::class, 'update'])->name('details.plan.update');
+    
     /**
      * Routes Plan
      */

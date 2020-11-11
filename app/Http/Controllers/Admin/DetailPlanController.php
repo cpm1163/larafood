@@ -18,17 +18,13 @@ class DetailPlanController extends Controller
     }
     public function index($urlPlan)
     {
-        //Carrega o plan com o detalhe de url = informado na rota 
-        if(!$plan = $this->plan->where('url', $urlPlan)->first())
-        {
-            // Não achou o detalhe e volta
+        //Carrega o plan com o detalhe de url = informado na rota
+
+        if(!$plan = $this->plan->where('url', $urlPlan)->first()){
             return redirect()->back();
         }
 
-        // Localizou
-        // $details = $plan->details();
         $details = $plan->details()->paginate();
-
 
         return view('admin.pages.plans.details.index', [
             'plan' => $plan,
@@ -38,21 +34,46 @@ class DetailPlanController extends Controller
 
     public function create($urlPlan)
     {
-        //Carrega o plan com o detalhe de url = informado na rota 
-        if(!$plan = $this->plan->where('url', $urlPlan)->first())
-        {
-            // Não achou o detalhe e volta
+        if(!$plan = $this->plan->where('url', $urlPlan)->first()){
             return redirect()->back();
         }
-        // Localizou
-        return view('admin.pages.plans.details.create', [
-            'plan' => $plan,
-        ]);
-
+        return view('admin.pages.plans.details.create', ['plan' => $plan]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $urlPlan)
     {
+        if(!$plan = $this->plan->where('url', $urlPlan)->first())
+        {
+            return redirect()->back();
+        }
+        $plan->details()->create($request->all());
+
+        return redirect()->route('details.plan.index', $plan->url);
+    }
+
+    public function edit($urlPlan, $idDetail)
+    {
+        $plan = $this->plan->where('url', $urlPlan)->first();
+        $detail = $this->repository->find($idDetail);
+
+        if(!$plan || !$detail){
+            return redirect()->back();
+        }
+
+        return view('admin.pages.details.plan.edit', [
+            'plan' => $plan,
+            'detail' => $detail,
+            ]);
+    }
+
+    public function update(Request $request, $urlPlan, $idDetail)
+    {
+        $plan = $this->plan->where('url', $urlPlan)->first();
+        $detail = $this->repository->find($idDetail);
+
+        if(!$plan || !$detail){
+            return redirect()->back();
+        }
         dd($request->all());
     }
 }

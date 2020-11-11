@@ -42,15 +42,15 @@ return [
     |
     | For more detailed instructions you can look here:
     | https://github.com/jeroennoten/Laravel-AdminLTE/#63-logo
-    |
+    | tamanho 128x128
     */
 
-    'logo' => '<b>Lara</b>Food',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo' => '<b>PH</b>ênix',
+    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo_novo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'LaraFodd',
+    'logo_img_alt' => 'Phenix',
 
     /*
     |--------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 ﻿@extends('adminlte::page')
 
-@section('title', 'Adicionar novo detalhe ao plano')
+@section('title', 'Editar o detalhe')
 
 @section('content_header')
     <nav aria-label="breadcrumb">
@@ -9,9 +9,9 @@
             <li class="breadcrumb-item"><a href="{{ route('plans.index') }}">Planos</a></li>
             <li class="breadcrumb-item"><a href="{{ route('plans.show', $plan->url) }}">{{ $plan->name }}</a></li>
             <li class="breadcrumb-item"><a href="{{ route('details.plan.index', $plan->url) }}">Detalhes</a></li>
-            <li class="breadcrumb-item active"><a href="{{ route('details.plan.create', $plan->url) }}">Novo</a></li>
+            <li class="breadcrumb-item active"><a href="{{ route('details.plan.create', [$plan->url, $deatil->id]) }}">Editar</a></li>
         </ol>
-        <h1>Adicionar novo detalhe ao plano {{ $plan->name }}</h1>
+        <h1>Editar o detalhe {{ $detail->name }}</h1>
     </nav>
 @stop
 
@@ -20,10 +20,10 @@
         <div class="card-header">
         </div>
         <div class="card-body">
-            <form action="{{ route('details.plan.store', $plan->url) }}">
-                @method('POST')
+            <form action="{{ route('details.plan.update', [$plan->url, $detail->id]) }}">
+                @method('PUT')
                 @include('admin.pages.plans.details._partials.form')
-            </form>            
+            </form>
         </div>
         <div class="card-foooter">
         </div>
