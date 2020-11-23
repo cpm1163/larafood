@@ -17,11 +17,8 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header">
-        </div>
         <div class="card-body">
-            <form action="{{ route('details.plan.store', $plan->url) }}">
-                @method('POST')
+            <form action="{{ route('details.plan.store', $plan->url) }}" class="form" method="POST">            
                 @include('admin.pages.plans.details._partials.form')
             </form>            
         </div>
@@ -31,7 +28,7 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" href="/vendor/adminlte/dist/css/admin_custom.css">
 @stop
 
 @section('js')

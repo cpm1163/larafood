@@ -12,7 +12,7 @@ class Plan extends Model
 
     public function details()
     {
-        // Relacionamento Uma para Muitos 1->N
+        // Relacionamento Uma para Muitos 1->N, retorno passando o model Plan.php
         return $this->hasMany(DetailPlan::class);
     }
 

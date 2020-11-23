@@ -1,17 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
-</head>
-<body>
-    <div class="container mx-auto" style="background: red;">
-        <h1>Este H1</h1>
-        <h2>Este H2</h2>
-    </div>
+﻿@extends('adminlte::page')
 
-</body>
-</html>
+@section('title', 'Detalhes do Plano')
+
+@section('content_header')
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">DashBoard</a></li>
+        </ol>
+        <h1>DashBoard</h1>
+    </nav>
+@stop
+
+@section('content')
+    <div class="card">
+        <div class="card-header">
+        </div>
+        <div class="card-body">
+
+        </div>
+        <div class="card-foooter">
+        </div>
+    </div>
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+    <script> console.log('Hi!'); </script>
+@stop

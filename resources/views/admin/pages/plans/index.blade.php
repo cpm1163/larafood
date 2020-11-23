@@ -8,7 +8,7 @@
             <li class="breadcrumb-item"><a href="{{ route('admin.index')}}">DashBoard</a></li>
             <li class="breadcrumb-item active" aria-current="page">Planos</li>
         </ol>
-        <h1>Planos <a href="{{route('plans.create')}}" class="btn btn-outline-dark">ADD<i class="fas fa-plus-square"></i></a></h1>
+        <h1>Planos <a href="{{route('plans.create')}}" class="btn btn-outline-success">Novo Plano<i class="fas fa-plus-square"></i></a></h1>
     </nav>
 @stop
 
@@ -25,13 +25,29 @@
                 @else
                     <input type="text" name="filter" class="form-control" placeholder="Pesquisar pelo nome:">
                     <button type="submit" class="btn btn-outline-info">
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
-                            <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
-                        </svg>
+                        <i class="fas fa-search"></i>
                     </button>
                 @endif
             </form>
+
+            @if (count($errors)> 0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+
+            @if (\Session::has('success'))
+                <div class="alert alert-success">
+                    <p>{{ \Session::has('success') }}</p>
+                </div>
+            @endif
+
+
         </div>
         <div class="card-body">
             <table class="table table-condensed">
@@ -74,9 +90,10 @@
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+    <link rel="stylesheet" href="/vendor/adminlte/dist/css/admin_custom.css">
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); </script>
+    <script> console.log('Hi!');</script>
+    
 @stop

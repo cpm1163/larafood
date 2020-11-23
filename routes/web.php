@@ -4,7 +4,7 @@ use App\Http\Controllers\Admin\DetailPlanController;
 use App\Http\Controllers\Admin\PlanController;
 use Illuminate\Support\Facades\Route;
 
-//Organizando as rotas do Admin
+//Organizando as rotas do Admin, criando um grupo de rotas
 Route::prefix('admin')->group(function(){
     /**
      * Routes Details Plan
@@ -12,9 +12,11 @@ Route::prefix('admin')->group(function(){
     Route::get('plans/{url}/details', [DetailPlanController::class, 'index'])->name('details.plan.index');
     Route::get('plans/{url}/details/create', [DetailPlanController::class, 'create'])->name('details.plan.create');
     Route::post('plans/{url}/details', [DetailPlanController::class, 'store'])->name('details.plan.store');
-    Route::get('plans/{url}/details/show', [DetailPlanController::class, 'show'])->name('details.plan.show');
+    Route::get('plans/{url}/details/{idDetail}', [DetailPlanController::class, 'show'])->name('details.plan.show');
+    Route::delete('plans/{url}/details/{idDetail}', [DetailPlanController::class, 'destroy'])->name('details.plan.destroy');
     Route::get('plans/{url}/details/{idDetail}/edit', [DetailPlanController::class, 'edit'])->name('details.plan.edit');
     Route::put('plans/{url}/details/{idDetail}', [DetailPlanController::class, 'update'])->name('details.plan.update');
+    
     
     /**
      * Routes Plan
