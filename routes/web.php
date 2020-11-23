@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\DetailPlanController;
 use App\Http\Controllers\Admin\PlanController;
 use Illuminate\Support\Facades\Route;
@@ -36,7 +36,9 @@ Route::prefix('admin')->group(function(){
     Route::get('/', [PlanController::class, 'index'])->name('admin.index');
 });
 
-
+Route::get('/', [HomeController::class, 'home'])->name('home');
+/*
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+*/

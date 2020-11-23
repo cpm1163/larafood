@@ -9,7 +9,7 @@
             <li class="breadcrumb-item"><a href="{{ route('plans.index') }}">Planos</a></li>
             <li class="breadcrumb-item"><a href="{{ route('plans.show', $plan->url) }}">{{ $plan->name }}</a></li>
             <li class="breadcrumb-item"><a href="{{ route('details.plan.index', $plan->url) }}">Detalhes</a></li>
-            <li class="breadcrumb-item active"><a href="{{ route('details.plan.edit', [$plan->url, $detail->id]) }}">Detalhes</a></li>
+            <li class="breadcrumb-item active">Visualizar <i class="far fa-eye"></i></li>
         </ol>
         <h1>Visualizar o detalhe {{ $detail->name }}</h1>
     </nav>

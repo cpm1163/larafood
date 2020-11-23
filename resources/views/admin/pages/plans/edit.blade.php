@@ -5,7 +5,8 @@
 @section('content_header')
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('admin.index')}}">DashBoard</a></li>
-        <li class="breadcrumb-item active"><a href="{{ route('plans.index')}}">Planos</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('plans.index')}}">Planos</a></li>
+        <li class="breadcrumb-item active">Editar <i class="fas fa-pencil-alt"></i></li>
     </ol>
     <h1>Editar o Plano <button type="button" class="btn btn-outline-dark">{{ $plan->name }}</button></h1>
 @stop
